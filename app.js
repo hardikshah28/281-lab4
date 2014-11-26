@@ -12,6 +12,7 @@ var http = require('http');
 var path = require('path');
 var dt = {};
 var app = express();
+var server = http.createServer(app);
 
 // all environments
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
@@ -99,6 +100,6 @@ app.post('/GumballPost', function(req,res){
 //});
 
 
-http.listen(server_port, server_ip_address, function(){
+server.listen(server_port, server_ip_address, function(){
   console.log("Listening on " + server_ip_address + ", server_port " + port)
 });
