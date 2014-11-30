@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -15,7 +14,7 @@ var app = express();
 var server = http.createServer(app);
 
 // all environments
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 //app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
 app.set('views', path.join(__dirname, 'views'));
@@ -34,9 +33,11 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//it gets url
+
 app.get('/', 
 	function(req,res){
-			client.get("http://nkukday-grails-gubmall-v2.cfapps.io/gumballs", function(data, response){
+			client.get("http://gumbalhardiknew.cfapps.io/gumballs", function(data, response){
             dt['id'] = data[0].id;
             dt['countGumballs'] = data[0].countGumballs;
             dt['modelNumber'] = data[0].modelNumber;
@@ -48,6 +49,9 @@ app.get('/',
         });
 }
 );
+
+// this is for creating new json field
+
 app.post('/GumballPost', function(req,res){
 	var event=req.param('event');
 	var state=req.param('state');
